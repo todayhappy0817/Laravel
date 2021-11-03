@@ -1,0 +1,30 @@
+
+기본 
+```
+Route::get('Hello', function () {
+    return view('Test');
+});
+// localhost/hello로 이동시 Test view를 실행하는 기본 라우트
+```
+요청에 따라 post,any,put,delete 담당하는 라우트를 설정할 수 있다.
+
+라우트 처리하기
+
+클로저를 사용하는 방법이 아닌 튜플 문법 형태의 컨트롤러와 메서드명을 전달하는 방식으로 정의하는 것이 좋다.(애플리케이션 규모가 커질수록 한 파일에서 모든 라우트를 정의하기가 어렵다.)
+
+```
+use APP\Http\Controllers\WelcomController;
+Route::get('/', [WelcomController::class, 'index']);
+// WelcomController 클래스의 index 메서드로 전달하는 코드다.
+```
+
+라우트 파라미터
+URL의 세그먼트를 변수로 받고자 한더면 파라미터를 정의하고 클로저에 전달할 수 있다.
+```
+Route::get('users/{id}/friends', function($id){
+//
+});
+```
+물음표를 뒤에 붙여 해당 파라미터를 옵션 값으로 정의할 수도 있다.
+$id='fallbackId'를 통해 기본 값으로 설정 가능하다.
+
